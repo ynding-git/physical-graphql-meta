@@ -1,0 +1,71 @@
+server:
+  port: 10203
+
+spring:
+  application:
+    name: physical-graphql-meta
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    deserialization:
+      #允许对象忽略json中不存在的属性
+      fail_on_unknown_properties: false
+
+
+  datasource:
+#    　　type: com.alibaba.druid.pool.DruidDataSource   #配置当前要使用的数据源的操作类型那个
+    　　driver-class-name: com.mysql.jdbc.Driver       #配置MySQL的驱动程序类
+    　　url: jdbc:mysql://101.37.202.3:3306/d_cloud?useUnicode=true&characterEncoding=utf8
+    　　username: root
+    　　password: Mysql12#
+    　　filters: stat,wall,log4j     #druid监控配置
+    　　dbcp2:
+      　　min-idle: 5         #数据库连接池的最小维持连接数
+      　　initial-size: 5     #初始化提供的连接数
+      　　max-total: 5          #最大的连接数
+      　　max-wait-millis: 200        #等待连接获取的最大超时时间
+
+graphql:
+  servlet:
+    mapping: /graphql
+    exception-handlers-enabled: true
+
+feign:
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
+  hystrix:
+    enabled: true
+
+ribbon:
+  eureka:
+    enabled: true
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 1
+  OkToRetryOnAllOperations: false
+
+hystrix:
+  threadpool:
+    default:
+      coreSize: 1000 #并发执行的最大线程数，默认10
+      maxQueueSize: 1000 #BlockingQueue的最大队列数
+      queueSizeRejectionThreshold: 500 #即使maxQueueSize没有达到，达到queueSizeRejectionThreshold该值后，请求也会被拒绝
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
+
+#这样才能访问 /actuator/bus-refresh
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+      cors:
+        allowed-origins: "*"
+        allowed-methods: "*"
