@@ -5,7 +5,7 @@ type Query {
 }
 type Mutation {
     addUser(mail: String!, nickname: String!, password: String!): User
-    addArticle(title: String!, content: String!, authorId: String!): Article
+    addArticle(title: String!, content: String!, authorId: ID!): Article
 }
 type User {
     id: ID!
