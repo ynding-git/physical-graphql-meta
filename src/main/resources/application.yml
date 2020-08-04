@@ -13,7 +13,7 @@ spring:
 
 
   datasource:
-#    　　type: com.alibaba.druid.pool.DruidDataSource   #配置当前要使用的数据源的操作类型那个
+    　　type: com.alibaba.druid.pool.DruidDataSource   #配置当前要使用的数据源的操作类型那个
     　　driver-class-name: com.mysql.jdbc.Driver       #配置MySQL的驱动程序类
     　　url: jdbc:mysql://101.37.202.3:3306/d_cloud?useUnicode=true&characterEncoding=utf8
     　　username: root

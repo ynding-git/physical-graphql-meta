@@ -14,12 +14,3 @@ type User {
     password: String!
     description: String
 }
-
-type Article {
-    id: ID!
-    author: User!
-    title: String!
-    content: String!
-    createBy: String
-    thumbUp: Int
-}
