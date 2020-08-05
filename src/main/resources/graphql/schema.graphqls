@@ -2,7 +2,15 @@ type Query {
     user(nickname: String): User
     users: [User]
     article(title: String!): Article
+    userPage(params: PageInput): [User]
 }
+
+input PageInput {
+    page: Int!=1
+    limit: Int!=10
+    offset: Int!=0
+}
+
 type Mutation {
     addUser(mail: String!, nickname: String!, password: String!): User
     addArticle(title: String!, content: String!, authorId: ID!): Article
