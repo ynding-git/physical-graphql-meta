@@ -12,6 +12,8 @@ type Query {
 #    data: [User]
 #}
 
+
+
 #interface ResponsePageBean {
 #    code: Int
 #    message: String
@@ -30,6 +32,8 @@ input UserQueryMap {
 type Mutation {
     addUser(mail: String!, nickname: String!, password: String!): User
     addArticle(title: String!, content: String!, authorId: ID!): Article
+    deleteUser(id: Int!) : Boolean
+
 }
 type User {
     id: ID!

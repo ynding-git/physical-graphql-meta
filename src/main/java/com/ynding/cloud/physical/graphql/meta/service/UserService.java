@@ -15,6 +15,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.util.Optional;
 
 /**
  * @author ynding
@@ -42,6 +43,20 @@ public class UserService {
         return page;
     }
 
+    /**
+     * 删除
+     * @param id
+     * @return
+     */
+    public Boolean deleteById(Long id) {
+        Optional<User> optional = userRepository.findById(id);
+        if(optional.isPresent()){
+            User user = optional.get();
+            userRepository.delete(user);
+            return true;
+        }
+        return false;
+    }
 
     /**
      * 查询条件
@@ -59,5 +74,6 @@ public class UserService {
             return predicate;
         };
     }
+
 
 }
