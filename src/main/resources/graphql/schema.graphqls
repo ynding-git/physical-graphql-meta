@@ -2,14 +2,30 @@ type Query {
     user(nickname: String): User
     users: [User]
     article(title: String!): Article
-    userPage(params: PageInput): [User]
+    userPage(page:Int!,limit:Int!,params: UserQueryMap): [User]
 }
 
-input PageInput {
-    page: Int!=1
-    limit: Int!=10
-    offset: Int!=0
+#type ResponsePageBean implements ResponseBean{
+#    code: Int
+#    message: String
+#    total: Int
+#    data: [User]
+#}
+
+#interface ResponsePageBean {
+#    code: Int
+#    message: String
+#    total: Int
+#    data: [Entity]
+#}
+#
+#interface Entity{}
+
+input UserQueryMap {
+    id: Int
+    nickname: String
 }
+
 
 type Mutation {
     addUser(mail: String!, nickname: String!, password: String!): User

@@ -36,3 +36,9 @@ spring:
     http:
       legacy:
         enabled: true
+
+  #没有用到mongodb，但是公共包添加了依赖，想想怎么优化一下依赖
+  data:
+    mongodb:
+      uri: mongodb://101.37.202.3/test
+      port: 27017
