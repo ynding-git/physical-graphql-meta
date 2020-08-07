@@ -1,18 +1,13 @@
-package com.ynding.cloud.physical.graphql.meta.resolver;
+package com.ynding.cloud.physical.graphql.meta.resolver.read;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
-import com.ynding.cloud.common.model.bo.GQuery;
-import com.ynding.cloud.common.model.bo.ResponsePageBean;
-import com.ynding.cloud.common.model.entity.book.Book;
+import com.ynding.cloud.physical.graphql.meta.bo.GQuery;
 import com.ynding.cloud.physical.graphql.meta.data.ArticleRepository;
 import com.ynding.cloud.physical.graphql.meta.data.UserRepository;
 import com.ynding.cloud.physical.graphql.meta.entity.Article;
 import com.ynding.cloud.physical.graphql.meta.entity.User;
 import com.ynding.cloud.physical.graphql.meta.service.UserService;
-import graphql.relay.Connection;
-import graphql.relay.Edge;
-import graphql.relay.PageInfo;
-import graphql.relay.SimpleListConnection;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
@@ -24,6 +19,7 @@ import java.util.Map;
  * @author ynding
  */
 @Component
+@Slf4j
 public class QueryResolver implements GraphQLQueryResolver {
     private final UserRepository userRepository;
     private final ArticleRepository articleRepository;
@@ -35,8 +31,16 @@ public class QueryResolver implements GraphQLQueryResolver {
         this.userService = userService;
     }
 
+    /**
+     * @param title
+     * @return
+     */
     public Article article(String title) {
         return articleRepository.findArticleByTitle(title);
+    }
+
+    public List<Article> articles() {
+        return articleRepository.findAll();
     }
 
     public User user(String nickname) {
@@ -58,4 +62,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 
         return userPage.getContent();
     }
+    public long userPageCount(Map<String, Object> params){
+        if(params == null){
+            params = new HashMap<>();
+        }
+        GQuery query = new GQuery(params);
+        List<User> users = userService.findList(query);
+        return users == null?0:users.size();
+    }
+
+
+
+
+
 }

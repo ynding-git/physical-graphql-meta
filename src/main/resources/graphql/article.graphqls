@@ -8,3 +8,24 @@ type Article {
     thumbUp: Int
 }
 
+
+extend type Query {
+    articleList(params: ArticleQueryMap): ResponseBean
+}
+
+
+
+
+
+
+
+# aritcle 请求参数
+input ArticleQueryMap {
+    id: ID
+    authorId: String
+    title: String
+    content: String
+    createBy: String
+    thumbUp: Int
+}
+

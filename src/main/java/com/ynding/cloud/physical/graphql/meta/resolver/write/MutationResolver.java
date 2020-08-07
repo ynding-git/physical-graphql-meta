@@ -1,4 +1,4 @@
-package com.ynding.cloud.physical.graphql.meta.resolver;
+package com.ynding.cloud.physical.graphql.meta.resolver.write;
 
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;

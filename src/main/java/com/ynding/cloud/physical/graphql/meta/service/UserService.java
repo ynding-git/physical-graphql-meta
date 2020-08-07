@@ -1,6 +1,6 @@
 package com.ynding.cloud.physical.graphql.meta.service;
 
-import com.ynding.cloud.common.model.bo.GQuery;
+import com.ynding.cloud.physical.graphql.meta.bo.GQuery;
 import com.ynding.cloud.physical.graphql.meta.data.UserRepository;
 import com.ynding.cloud.physical.graphql.meta.entity.User;
 import org.springframework.data.domain.Page;
@@ -15,6 +15,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -28,6 +29,17 @@ public class UserService {
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
+
+
+    /**
+     * 查询列表
+     * @param query
+     * @return
+     */
+    public List<User> findList(GQuery query){
+        return userRepository.findAll(condition(query));
+    }
+
 
     /**
      * 分页查询
@@ -48,11 +60,12 @@ public class UserService {
      * @param id
      * @return
      */
+    @Transactional(readOnly = false)
     public Boolean deleteById(Long id) {
         Optional<User> optional = userRepository.findById(id);
         if(optional.isPresent()){
             User user = optional.get();
-            userRepository.delete(user);
+            userRepository.deleteByNickname(user.getNickname());
             return true;
         }
         return false;
@@ -67,10 +80,12 @@ public class UserService {
 
         return (Root<User> root, CriteriaQuery<?> cq, CriteriaBuilder cb) -> {
             Predicate predicate = cb.conjunction();
-            if (query.get("id") != null)
+            if (query.get("id") != null) {
                 predicate.getExpressions().add(cb.equal(root.get("id"), query.get("id")));
-            if (query.get("nickname") != null)
+            }
+            if (query.get("nickname") != null) {
                 predicate.getExpressions().add(cb.like(root.get("nickname"), "%" + query.get("nickname") + "%"));
+            }
             return predicate;
         };
     }

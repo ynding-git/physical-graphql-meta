@@ -1,0 +1,8 @@
+
+type ResponseBean {
+    code: Int!
+    message: String
+    data: [Data]
+}
+
+scalar Data

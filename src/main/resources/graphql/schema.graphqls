@@ -1,9 +1,19 @@
 type Query {
     user(nickname: String): User
     users: [User]
-    article(title: String!): Article
     userPage(page:Int!,limit:Int!,params: UserQueryMap): [User]
+    userPageCount(params: UserQueryMap): Int
+
+    article(title: String!): Article
+    articles: [Article]
 }
+
+type Mutation {
+    addUser(mail: String!, nickname: String!, password: String!): User
+    addArticle(title: String!, content: String!, authorId: ID!): Article
+    deleteUser(id: Int!) : Boolean
+}
+
 
 #type ResponsePageBean implements ResponseBean{
 #    code: Int
@@ -11,8 +21,6 @@ type Query {
 #    total: Int
 #    data: [User]
 #}
-
-
 
 #interface ResponsePageBean {
 #    code: Int
@@ -28,13 +36,6 @@ input UserQueryMap {
     nickname: String
 }
 
-
-type Mutation {
-    addUser(mail: String!, nickname: String!, password: String!): User
-    addArticle(title: String!, content: String!, authorId: ID!): Article
-    deleteUser(id: Int!) : Boolean
-
-}
 type User {
     id: ID!
     mail: String!
