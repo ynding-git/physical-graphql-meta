@@ -1,6 +1,6 @@
 
 extend type Query {
-    user(nickname: String): User
+    user(nickname: String): ResponseBean
     users: [User]
     userPage(page:Int!,limit:Int!,params: UserQueryMap): [User]
     userPageCount(params: UserQueryMap): Int

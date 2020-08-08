@@ -2,6 +2,7 @@ package com.ynding.cloud.physical.graphql.meta.resolver.read;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import com.ynding.cloud.physical.graphql.meta.bo.GQuery;
+import com.ynding.cloud.physical.graphql.meta.bo.ResponseBean;
 import com.ynding.cloud.physical.graphql.meta.data.ArticleRepository;
 import com.ynding.cloud.physical.graphql.meta.data.UserRepository;
 import com.ynding.cloud.physical.graphql.meta.entity.Article;
@@ -20,12 +21,12 @@ import java.util.Map;
  */
 @Component
 @Slf4j
-public class QueryResolver implements GraphQLQueryResolver {
+public class UserQueryResolver implements GraphQLQueryResolver {
     private final UserRepository userRepository;
     private final ArticleRepository articleRepository;
     private final UserService userService;
 
-    public QueryResolver(UserRepository userRepository, ArticleRepository articleRepository, UserService userService) {
+    public UserQueryResolver(UserRepository userRepository, ArticleRepository articleRepository, UserService userService) {
         this.userRepository = userRepository;
         this.articleRepository = articleRepository;
         this.userService = userService;
@@ -43,8 +44,14 @@ public class QueryResolver implements GraphQLQueryResolver {
         return articleRepository.findAll();
     }
 
-    public User user(String nickname) {
-        return userRepository.findUserByNickname(nickname);
+    public ResponseBean user(String nickname) {
+        try{
+            User user = userRepository.findUserByNickname(nickname);
+            return ResponseBean.ok(user);
+        } catch (Exception e){
+            e.printStackTrace();
+            return ResponseBean.fail(500);
+        }
     }
 
     public List<User> users() {
@@ -70,9 +77,5 @@ public class QueryResolver implements GraphQLQueryResolver {
         List<User> users = userService.findList(query);
         return users == null?0:users.size();
     }
-
-
-
-
 
 }

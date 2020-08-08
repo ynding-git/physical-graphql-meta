@@ -18,7 +18,7 @@ import javax.persistence.Id;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class User implements com.ynding.cloud.physical.graphql.meta.entity.Entity {
+public class User {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
