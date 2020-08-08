@@ -1,19 +1,17 @@
 package com.ynding.cloud.physical.graphql.meta.bo;
 
-import java.util.List;
-
 /**
  * 返回数据bean
  */
 public class ResponseBean {
     private int code = 200;
     private String message = "";
-    private List data;
+    private Object data;
 
     public ResponseBean() {
     }
 
-    public ResponseBean(List data) {
+    public ResponseBean(Object data) {
         this.data = data;
     }
 
@@ -26,7 +24,7 @@ public class ResponseBean {
         this.code = code;
     }
 
-    public ResponseBean(String message, List data) {
+    public ResponseBean(String message, Object data) {
         this.message = message;
         this.data = data;
     }
@@ -40,7 +38,7 @@ public class ResponseBean {
         this.message = errorCode.getMessage();
     }
 
-    public ResponseBean(List data, IResponseCode errorCode) {
+    public ResponseBean(Object data, IResponseCode errorCode) {
         this.data = data;
         this.code = errorCode.getCode();
         this.message = errorCode.getMessage();
@@ -50,10 +48,10 @@ public class ResponseBean {
         return new ResponseBean();
     }
 
-    public static ResponseBean ok(List data) {
+    public static ResponseBean ok(Object data) {
         return new ResponseBean(data);
     }
-    public static  ResponseBean ok(String message, List data) {
+    public static  ResponseBean ok(String message, Object data) {
         return new ResponseBean(message,data);
     }
 
@@ -65,7 +63,7 @@ public class ResponseBean {
         return new ResponseBean(errorCode);
     }
 
-    public static  ResponseBean fail(IResponseCode errorCode, List data) {
+    public static  ResponseBean fail(IResponseCode errorCode, Object data) {
         return new ResponseBean(data, errorCode);
     }
 
@@ -99,11 +97,11 @@ public class ResponseBean {
         return this;
     }
 
-    public List getData() {
+    public Object getData() {
         return this.data;
     }
 
-    public ResponseBean setData(List data) {
+    public ResponseBean setData(Object data) {
         this.data = data;
         return this;
     }

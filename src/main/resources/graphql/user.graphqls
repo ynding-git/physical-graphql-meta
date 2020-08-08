@@ -1,0 +1,25 @@
+
+extend type Query {
+    user(nickname: String): User
+    users: [User]
+    userPage(page:Int!,limit:Int!,params: UserQueryMap): [User]
+    userPageCount(params: UserQueryMap): Int
+}
+
+extend type Mutation {
+    addUser(mail: String!, nickname: String!, password: String!): User
+    deleteUser(id: Int!) : Boolean
+}
+
+input UserQueryMap {
+    id: Int
+    nickname: String
+}
+
+type User {
+    id: ID!
+    mail: String!
+    nickname: String!
+    password: String!
+    description: String
+}

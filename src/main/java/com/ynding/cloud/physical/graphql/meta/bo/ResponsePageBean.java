@@ -1,20 +1,27 @@
 package com.ynding.cloud.physical.graphql.meta.bo;
 
-import java.util.List;
-
 /**
  * 分页bean
  */
 public class ResponsePageBean extends ResponseBean {
     private long total;
 
-    private ResponsePageBean(List data, long total) {
+    private ResponsePageBean(Object data, long total) {
         super(data);
         this.total = total;
     }
 
-    public static  ResponsePageBean ok(List data, long total) {
+    private ResponsePageBean(int code, String message) {
+        this.setCode(code);
+        this.setMessage(message);
+    }
+
+    public static  ResponsePageBean ok(Object data, long total) {
         return new ResponsePageBean(data, total);
+    }
+
+    public static  ResponsePageBean fail(int code, String message) {
+        return new ResponsePageBean(code, message);
     }
 
     public long getTotal() {

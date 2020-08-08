@@ -1,45 +1,8 @@
-type Query {
-    user(nickname: String): User
-    users: [User]
-    userPage(page:Int!,limit:Int!,params: UserQueryMap): [User]
-    userPageCount(params: UserQueryMap): Int
 
-    article(title: String!): Article
-    articles: [Article]
+schema {
+    query: Query
+    mutation: Mutation
 }
 
-type Mutation {
-    addUser(mail: String!, nickname: String!, password: String!): User
-    addArticle(title: String!, content: String!, authorId: ID!): Article
-    deleteUser(id: Int!) : Boolean
-}
-
-
-#type ResponsePageBean implements ResponseBean{
-#    code: Int
-#    message: String
-#    total: Int
-#    data: [User]
-#}
-
-#interface ResponsePageBean {
-#    code: Int
-#    message: String
-#    total: Int
-#    data: [Entity]
-#}
-#
-#interface Entity{}
-
-input UserQueryMap {
-    id: Int
-    nickname: String
-}
-
-type User {
-    id: ID!
-    mail: String!
-    nickname: String!
-    password: String!
-    description: String
-}
+type Query {}
+type Mutation {}

@@ -1,0 +1,13 @@
+
+type ResponseBean {
+    code: Int!
+    message: String
+    data: Object
+}
+
+type ResponsePageBean {
+    code: Int!
+    message: String
+    data: Object
+    total: Int!
+}

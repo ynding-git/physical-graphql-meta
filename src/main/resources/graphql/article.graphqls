@@ -1,23 +1,23 @@
 
+extend type Query {
+    article(title: String!): Article
+    articles: [Article]
+    articleList(params: ArticleQueryMap): ResponseBean
+    articlePage(page:Int!, limit:Int!, params:ArticleQueryMap): ResponsePageBean
+}
+
+extend type Mutation {
+    addArticle(title: String!, content: String!, authorId: ID!): Article
+}
+
 type Article {
     id: ID!
     author: User!
     title: String!
     content: String!
-    createBy: String
+    createBy: DateTime
     thumbUp: Int
 }
-
-
-extend type Query {
-    articleList(params: ArticleQueryMap): ResponseBean
-}
-
-
-
-
-
-
 
 # aritcle 请求参数
 input ArticleQueryMap {
@@ -28,4 +28,5 @@ input ArticleQueryMap {
     createBy: String
     thumbUp: Int
 }
+
 

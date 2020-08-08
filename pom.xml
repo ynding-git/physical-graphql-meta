@@ -42,34 +42,39 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
-            <version>${druid.version}</version>
+            <version>1.1.0</version>
         </dependency>
 
         <dependency>
             <groupId>com.graphql-java-kickstart</groupId>
             <artifactId>graphql-java-tools</artifactId>
-            <version>${graphql.tool.version}</version>
+            <version>5.4.0</version>
         </dependency>
         <!-- graphql -->
         <dependency>
             <groupId>com.graphql-java</groupId>
             <artifactId>graphql-spring-boot-starter</artifactId>
-            <version>${graphql.version}</version>
+            <version>5.0.2</version>
         </dependency>
         <!-- 这个是graphiql，跟上面的不一样 -->
         <dependency>
             <groupId>com.graphql-java</groupId>
             <artifactId>graphiql-spring-boot-starter</artifactId>
-            <version>${graphql.version}</version>
+            <version>5.0.2</version>
         </dependency>
+
         <!--注解生成graphql scheam -->
         <dependency>
             <groupId>io.leangen.graphql</groupId>
             <artifactId>spqr</artifactId>
             <version>0.10.1</version>
         </dependency>
-
-
+        <!--<dependency>
+            <groupId>com.graphql-java</groupId>
+            <artifactId>graphql-java</artifactId>
+            <version>15.0</version>
+        </dependency>
+-->
 
     </dependencies>
 
