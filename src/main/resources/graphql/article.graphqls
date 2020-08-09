@@ -2,6 +2,7 @@
 extend type Query {
     article(title: String!): Article
     articles: [Article]
+    findArticleById(id: Int!): ArticleResponseBean
     articleList(params: ArticleQueryMap): ResponseBean
     articlePage(page:Int!, limit:Int!, params:ArticleQueryMap): ResponsePageBean
 }
@@ -29,4 +30,9 @@ input ArticleQueryMap {
     thumbUp: Int
 }
 
+type ArticleResponseBean{
+    code: Int
+    message: String
+    data: Article
+}
 
