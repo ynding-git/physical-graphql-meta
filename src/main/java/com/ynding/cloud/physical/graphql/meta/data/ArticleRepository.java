@@ -9,6 +9,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
  */
 public interface ArticleRepository extends JpaRepository<Article, Long>, JpaSpecificationExecutor<Article> {
 
-    Article findArticleByTitle(String title);
+    Article findTopArticleByTitle(String title);
 
 }

@@ -48,19 +48,19 @@
         <dependency>
             <groupId>com.graphql-java-kickstart</groupId>
             <artifactId>graphql-java-tools</artifactId>
-            <version>5.4.0</version>
+            <version>6.3.0</version>
         </dependency>
         <!-- graphql -->
         <dependency>
-            <groupId>com.graphql-java</groupId>
+            <groupId>com.graphql-java-kickstart</groupId>
             <artifactId>graphql-spring-boot-starter</artifactId>
-            <version>5.0.2</version>
+            <version>8.1.1</version>
         </dependency>
         <!-- 这个是graphiql，跟上面的不一样 -->
         <dependency>
-            <groupId>com.graphql-java</groupId>
+            <groupId>com.graphql-java-kickstart</groupId>
             <artifactId>graphiql-spring-boot-starter</artifactId>
-            <version>5.0.2</version>
+            <version>8.1.1</version>
         </dependency>
 
         <!--注解生成graphql scheam -->

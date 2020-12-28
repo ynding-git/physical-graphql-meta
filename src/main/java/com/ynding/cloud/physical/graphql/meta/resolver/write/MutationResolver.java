@@ -1,12 +1,12 @@
 package com.ynding.cloud.physical.graphql.meta.resolver.write;
 
-import com.coxautodev.graphql.tools.GraphQLMutationResolver;
-import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import com.ynding.cloud.physical.graphql.meta.data.ArticleRepository;
 import com.ynding.cloud.physical.graphql.meta.data.UserRepository;
 import com.ynding.cloud.physical.graphql.meta.entity.Article;
 import com.ynding.cloud.physical.graphql.meta.entity.User;
 import com.ynding.cloud.physical.graphql.meta.service.UserService;
+import graphql.kickstart.tools.GraphQLMutationResolver;
+import graphql.kickstart.tools.GraphQLQueryResolver;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 

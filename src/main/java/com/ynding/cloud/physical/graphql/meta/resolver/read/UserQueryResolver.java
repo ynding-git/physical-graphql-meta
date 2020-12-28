@@ -1,6 +1,5 @@
 package com.ynding.cloud.physical.graphql.meta.resolver.read;
 
-import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import com.ynding.cloud.physical.graphql.meta.bo.GQuery;
 import com.ynding.cloud.physical.graphql.meta.bo.ResponseBean;
 import com.ynding.cloud.physical.graphql.meta.data.ArticleRepository;
@@ -8,6 +7,7 @@ import com.ynding.cloud.physical.graphql.meta.data.UserRepository;
 import com.ynding.cloud.physical.graphql.meta.entity.Article;
 import com.ynding.cloud.physical.graphql.meta.entity.User;
 import com.ynding.cloud.physical.graphql.meta.service.UserService;
+import graphql.kickstart.tools.GraphQLQueryResolver;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
@@ -37,7 +37,7 @@ public class UserQueryResolver implements GraphQLQueryResolver {
      * @return
      */
     public Article article(String title) {
-        return articleRepository.findArticleByTitle(title);
+        return articleRepository.findTopArticleByTitle(title);
     }
 
     public List<Article> articles() {
